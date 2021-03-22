@@ -1,0 +1,7 @@
+16:14:38 [Skill] INFO  Skill:139 - Connecting to Furhat server on 0.0.0.0:1932
+16:14:38 [NewskillSkill] INFO  NewskillSkill:166 - Starting skill
+16:14:47 [pool-2-thread-1] ERROR IdfMultiIntentClassifier:249 - Could not find class for entity @fruits in Noun
+16:14:47 [pool-2-thread-1] ERROR IdfMultiIntentClassifier:249 - Could not find class for entity @fruits in Noun
+16:14:47 [pool-2-thread-1] ERROR IdfMultiIntentClassifier:249 - Could not find class for entity @fruits in Noun
+16:14:47 [pool-2-thread-1] ERROR IdfMultiIntentClassifier:249 - Could not find class for entity @fruits in Noun
+16:15:07 [EventSystem] INFO  NewskillSkill:184 - Terminating skill

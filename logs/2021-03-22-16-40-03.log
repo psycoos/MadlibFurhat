@@ -1,0 +1,27 @@
+16:40:03 [Skill] INFO  Skill:139 - Connecting to Furhat server on 0.0.0.0:1932
+16:40:03 [NewskillSkill] INFO  NewskillSkill:166 - Starting skill
+16:40:12 [ErrorLoggingThread] ERROR NewskillSkill:459 - Exception in thread "NewskillSkill" java.lang.IllegalArgumentException: Class should have a single no-arg constructor: class furhatos.app.newskill.nlu.QAIntent
+	at kotlin.reflect.full.KClasses.createInstance(KClasses.kt:281)
+	at furhatos.app.newskill.flow.InteractionKt$Story$1.invoke(interaction.kt:43)
+	at furhatos.app.newskill.flow.InteractionKt$Story$1.invoke(interaction.kt)
+	at furhatos.flow.kotlin.State.makeState$furhat_commons(State.kt:100)
+	at furhatos.flow.kotlin.StateRunner.<init>(StateRunner.kt:19)
+	at furhatos.flow.kotlin.StateRunner.<init>(StateRunner.kt:18)
+	at furhatos.flow.kotlin.Flow.tailRecRun(Flow.kt:145)
+	at furhatos.flow.kotlin.Flow.run(Flow.kt:110)
+	at furhatos.app.newskill.NewskillSkill.start(main.kt:9)
+	at furhatos.skills.Skill.initializeSkill(Skill.java:169)
+	at furhatos.skills.Skill.lambda$startSkill$2(Skill.java:227)
+	at java.lang.Thread.run(Thread.java:748)
+
+16:45:14 [ErrorLoggingThread] ERROR NewskillSkill:459 - Flow - unknown - A flow's queue is full, could not add furhatos.event.responses.ResponseGlobalGestures
+Flow - unknown - A flow's queue is full, could not add furhatos.event.responses.ResponseRobotVersion
+
+16:45:15 [ErrorLoggingThread] ERROR NewskillSkill:459 - Flow - unknown - A flow's queue is full, could not add furhatos.event.actions.ActionGesture
+Flow - unknown - A flow's queue is full, could not add furhatos.event.monitors.MonitorGestureStart
+
+16:45:16 [ErrorLoggingThread] ERROR NewskillSkill:459 - Flow - unknown - A flow's queue is full, could not add furhatos.event.monitors.MonitorGestureEnd
+
+16:45:17 [ErrorLoggingThread] ERROR NewskillSkill:459 - Flow - unknown - A flow's queue is full, could not add furhatos.event.actions.ActionGesture
+Flow - unknown - A flow's queue is full, could not add furhatos.event.monitors.MonitorGestureStart
+
