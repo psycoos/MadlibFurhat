@@ -4,6 +4,8 @@ import furhatos.nlu.common.*
 import furhatos.flow.kotlin.*
 import furhatos.app.newskill.nlu.*
 
+val words: MutableList<String> = ArrayList()
+
 val Start : State = state(Interaction) {
 
     onEntry {
@@ -26,7 +28,26 @@ val Story = state {
     }
 
     onResponse<Animal> {
-        furhat.say("${it.text}, I will add it to the story.")
-        reentry()
+        words.add(it.text)
+        furhat.say("${words[0]}, I will add it to the story.")
+        goto(Word2)
+    }
+}
+
+val Word2 = state {
+    onEntry {
+        furhat.ask("What is your favourite city?")
+    }
+
+    onResponse<City> {
+        words.add(it.text)
+        furhat.say("${words[1]}, I will add it to the story.")
+        goto(TellStory)
+    }
+}
+
+val TellStory = state {
+    onEntry {
+        furhat.say("I have adopted a ${words[0]} from the zoo in ${words[1]}")
     }
 }
