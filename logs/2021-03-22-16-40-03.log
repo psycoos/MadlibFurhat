@@ -25,3 +25,4 @@ Flow - unknown - A flow's queue is full, could not add furhatos.event.monitors.M
 16:45:17 [ErrorLoggingThread] ERROR NewskillSkill:459 - Flow - unknown - A flow's queue is full, could not add furhatos.event.actions.ActionGesture
 Flow - unknown - A flow's queue is full, could not add furhatos.event.monitors.MonitorGestureStart
 
+17:05:54 [Broker Client] ERROR BrokerClient:152 - Unexpected disconnect from broker

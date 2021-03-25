@@ -11,6 +11,12 @@ class Animal : Intent() {
         return listOf("dog", "cat", "horse", "ant")
     }
 }
+
+class City : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf("amsterdam", "london", "paris", "berlin")
+    }
+}
 //
 //class WhoEntity: WildcardEntity("who", SendMessageIntent())
 //class MessageEntity: WildcardEntity("message", SendMessageIntent())
