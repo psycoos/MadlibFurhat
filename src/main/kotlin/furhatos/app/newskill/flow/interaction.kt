@@ -13,7 +13,7 @@ val Start : State = state(Interaction) {
     }
 
     onResponse<Yes>{
-        furhat.say("Alright. Let's begin.")
+        furhat.say("Alright. Let's stop.")
         goto(Story)
     }
 
