@@ -6,32 +6,60 @@ import furhatos.nlu.kotlin.grammar
 import furhatos.nlu.common.Number
 import furhatos.util.Language
 
-class Animal : Intent() {
+class FirstName : Intent() {
     override fun getExamples(lang: Language): List<String> {
-        return listOf("dog", "cat", "horse", "ant")
+        return listOf()
     }
 }
 
-class City : Intent() {
+class Profession : Intent() {
     override fun getExamples(lang: Language): List<String> {
-        return listOf("amsterdam", "london", "paris", "berlin")
+        return listOf()
     }
 }
-//
-//class WhoEntity: WildcardEntity("who", SendMessageIntent())
-//class MessageEntity: WildcardEntity("message", SendMessageIntent())
-//
-//class SendMessageIntent(): Intent() {
-//
-//    var who: WhoEntity? = null
-//    var message: MessageEntity? = null
-//
-//    override fun getExamples(lang: Language): List<String> {
-//        return listOf(
-//                "Tell @who to @message",
-//                "Send @who a message saying @message"
-//        );
-//    }
-//
-//}
 
+class Country : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
+
+class Colour : Intent() {
+
+}
+
+class Superpower : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
+
+class Mammal : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
+
+class FacialFeature : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
+
+class Vegetable : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
+
+class Capital : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
+
+class Weapon : Intent() {
+    override fun getExamples(lang: Language): List<String> {
+        return listOf()
+    }
+}
