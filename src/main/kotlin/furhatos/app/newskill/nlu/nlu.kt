@@ -12,54 +12,20 @@ class FirstName : Intent() {
     }
 }
 
-class Profession : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class Professions : Intent()
 
-class Country : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class Countries : Intent()
 
-class Colour : Intent() {
+class Colour : Intent()
 
-}
+class Superpowers : Intent()
 
-class Superpower : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class Mammals: Intent()
 
-class Mammal : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class FacialFeatures : Intent()
 
-class FacialFeature : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class Vegetables : Intent()
 
-class Vegetable : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class Capitals : Intent()
 
-class Capital : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
-
-class Weapon : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf()
-    }
-}
+class Weapon : Intent()
