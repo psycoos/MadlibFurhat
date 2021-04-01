@@ -6,9 +6,11 @@ import furhatos.nlu.kotlin.grammar
 import furhatos.nlu.common.Number
 import furhatos.util.Language
 
+
+
 class FirstName : Intent() {
     override fun getExamples(lang: Language): List<String> {
-        return listOf()
+        return listOf("Jack")
     }
 }
 

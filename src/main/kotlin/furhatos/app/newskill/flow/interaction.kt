@@ -3,6 +3,11 @@ package furhatos.app.newskill.flow
 import furhatos.nlu.common.*
 import furhatos.flow.kotlin.*
 import furhatos.app.newskill.nlu.*
+import furhatos.gestures.Gestures
+import furhatos.gestures.Gestures.BigSmile
+import furhatos.gestures.Gestures.ExpressSad
+import furhatos.nlu.common.Color
+import furhatos.nlu.common.Number
 
 val words: MutableList<String> = ArrayList()
 
@@ -15,7 +20,7 @@ val Start : State = state(Interaction) {
                 {   furhat.say("Hi") }
         )
         furhat.say("I am Furhat.")
-        furhat.gesture(Gestures.BigSmile(duration=2.0))
+        furhat.gesture(BigSmile(duration=2.0))
         delay(300)
 
         goto(AskToPlay)
@@ -51,7 +56,6 @@ val AskToPlay = state(Interaction) {
         )
         furhat.gesture(Gestures.ExpressSad)
     }
-
 }
 
 val FirstName = state {
@@ -60,7 +64,7 @@ val FirstName = state {
         furhat.gesture(Gestures.Smile(strength=0.5))
     }
 
-    onResponse<FirstName> {
+    onResponse<PersonName> {
         words.add(it.text)
         furhat.say("${words[0]}, I will add it to the story.")
         goto(Profession)
@@ -96,7 +100,7 @@ val ColourOne = state {
         furhat.ask("What is your favourite color?")
     }
 
-    onResponse<Colour> {
+    onResponse<Color> {
         words.add(it.text)
         furhat.say("${words[3]}, I will add it to the story.")
         goto(Superpower)
@@ -132,7 +136,7 @@ val ColourTwo = state {
         furhat.ask("Please give me another color.")
     }
 
-    onResponse<Colour> {
+    onResponse<Number> {
         words.add(it.text)
         furhat.say("${words[6]}, I will add it to the story.")
         goto(FacialFeature)
@@ -196,8 +200,8 @@ val TellStory = state {
         furhat.say("a ${words[3]} coloured giant with amazing powers, ")
         furhat.say("like ${words[4]}.")
         furhat.say("Every day, he battles bad guys with his pet ${words[5]}.")
-        furhat.say("Eventually it is discovered that our hero's archnemesis, Doctor Evil, distinguished by his ${words[6]} ${words[7]} has turned ${words[8]} into a weapon.)
-        furhat.say(" Leading to a huge battle between the two in downtown ${words[9]}, with ${words[8]} falling from the sky.")
+        furhat.say("Eventually it is discovered that our hero's arch nemesis, Doctor Evil, distinguished by his ${words[6]} ${words[7]}s has turned ${words[8]} into a weapon.")
+        furhat.say(" Leading to a huge battle between the two in downtown ${words[9]}, with slices of ${words[8]} falling from the sky.")
         furhat.say("Luckily, our hero is able to defeat him, capturing his enemy with his ${words[10]}.")
         furhat.say("So, our hero saves the day yet again.")
 
@@ -209,19 +213,23 @@ val AnotherStory = state {
     onEntry {
         furhat.say("That was a great story!")
         furhat.ask("Do you want to try again?")
+    }
 
-        onResponse<Yes>{
-            furhat.say("That's great!")},
-            furhat.gesture(Gestures.Smile)
+    onResponse<Yes> {
+        furhat.say("That's great!")
+        furhat.gesture(Gestures.Smile)
 
-            goto(FirstName)
-        }
-        onResponse<No>{
-            random(
-                    {furhat.say("Okay, well that's a shame. Have a nice day!")},
-                    {furhat.say("Oh, that's unfortunate. Have a nice day!")}
-            )
-            furhat.gesture(Gestures.ExpressSade)
-        }
+//        goto(FirstName)
+    }
+
+    onResponse<No> {
+        random(
+                { furhat.say("Okay, well that's a shame. Have a nice day!") },
+                { furhat.say("Oh, that's unfortunate. Have a nice day!") }
+        )
+        furhat.gesture(ExpressSad)
+    }
+
+}
 
 
