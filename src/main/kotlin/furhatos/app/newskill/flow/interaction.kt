@@ -133,7 +133,7 @@ val Mammal = state {
 
 val ColourTwo = state {
     onEntry {
-        furhat.ask("Please give me another color.")
+        furhat.ask("Please give me a number.")
     }
 
     onResponse<Number> {
