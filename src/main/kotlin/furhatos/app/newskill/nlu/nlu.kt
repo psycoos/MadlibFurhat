@@ -6,32 +6,28 @@ import furhatos.nlu.kotlin.grammar
 import furhatos.nlu.common.Number
 import furhatos.util.Language
 
-class Animal : Intent() {
+
+
+class FirstName : Intent() {
     override fun getExamples(lang: Language): List<String> {
-        return listOf("dog", "cat", "horse", "ant")
+        return listOf("Jack")
     }
 }
 
-class City : Intent() {
-    override fun getExamples(lang: Language): List<String> {
-        return listOf("amsterdam", "london", "paris", "berlin")
-    }
-}
-//
-//class WhoEntity: WildcardEntity("who", SendMessageIntent())
-//class MessageEntity: WildcardEntity("message", SendMessageIntent())
-//
-//class SendMessageIntent(): Intent() {
-//
-//    var who: WhoEntity? = null
-//    var message: MessageEntity? = null
-//
-//    override fun getExamples(lang: Language): List<String> {
-//        return listOf(
-//                "Tell @who to @message",
-//                "Send @who a message saying @message"
-//        );
-//    }
-//
-//}
+class Professions : Intent()
 
+class Countries : Intent()
+
+class Colour : Intent()
+
+class Superpowers : Intent()
+
+class Mammals: Intent()
+
+class FacialFeatures : Intent()
+
+class Vegetables : Intent()
+
+class Capitals : Intent()
+
+class Weapon : Intent()
