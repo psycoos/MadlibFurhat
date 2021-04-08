@@ -75,7 +75,7 @@ val Explain = state(Interaction) {
 val AskToPlay = state(Interaction) {
     onEntry {
         random(
-                {furhat.ask("So, would you like to make a Mad lib with me")},
+                {furhat.ask("So, would you like to make a Mad lib with me?")},
                 {furhat.ask("Do you want to make a Mad lib?")}
         )
         furhat.gesture(Gestures.BrowRaise)
@@ -188,7 +188,7 @@ val Superpower = state {
     onResponse<Superpowers> {
         words.add(it.text)
         random(
-                { furhat.say("${words[4]}, a bit boring but alright. I wil add it to the story.") },
+                { furhat.say("${words[4]}, a bit boring but alright. Noted.") },
                 { furhat.say("${words[4]}, I wish I could do that, but I don't have a physical body. I will add it to the story though.") }
         )
 
@@ -205,9 +205,9 @@ val Mammal = state {
     onResponse<Mammals> {
         words.add(it.text)
         if (it.text == "Cat" || it.text == "cat" || it.text == "cats") {
-            furhat.say("${words[5]}, a good friend of mine, Mariët, also has a very cute cat. I will add it to the story.")
+            furhat.say("${words[5]}, a good friend of mine, Mariët, also has a very cute cat. I will add it.")
         } else {
-            furhat.say("${words[5]}, I will add it to the story.")
+            furhat.say("${words[5]}, I'll add it to our story.")
         }
         goto(ColourTwo)
     }
@@ -222,8 +222,8 @@ val ColourTwo = state {
     onResponse<Number> {
         words.add(it.text)
         random (
-                {furhat.say("${words[6]},That's the amount of transistors in my brain. I will add it to the story.")},
-                {furhat.say("${words[6]},I hope that is enough, but I will add it to the story.")}
+                {furhat.say("${words[6]},That's the amount of transistors in my brain. I have added it to the story.")},
+                {furhat.say("${words[6]},I hope that is enough, but I'll add it.")}
                 )
 
         goto(FacialFeature)
@@ -251,14 +251,14 @@ val Vegetable = state {
 
     onResponse<Vegetables> {
         words.add(it.text)
-        furhat.say("${words[8]}, those are especially disgusting. I will add it to the story.")
+        furhat.say("${words[8]}, those are especially disgusting. I have added it to the story.")
         goto(Capital)
     }
 }
 
 val Capital = state {
     onEntry {
-        furhat.ask("Name an European capital.")
+        furhat.ask("Name a European capital.")
         furhat.gesture(Gestures.BrowRaise)
     }
 
@@ -267,7 +267,7 @@ val Capital = state {
         if (it.text == "Enschede" || it.text == "enschede") {
             furhat.say("Oh, ${words[9]}, My good friend Mariët lives there")
         } else {
-            furhat.say("${words[9]}, I heard it's beautiful there this time of year. I will add it to the story.")
+            furhat.say("${words[9]}, I heard it's beautiful there this time of year. I will add it.")
         }
         goto(Weapon)
     }
@@ -285,7 +285,7 @@ val Weapon : State = state {
 }
 val ProperWeapon : State = state {
     onEntry {
-        furhat.ask("Name some kind of weapon.")
+        furhat.ask("Name a better weapon.")
     }
 
     onResponse<Weapon> {
@@ -314,7 +314,7 @@ val TellStory = state {
         delay(200)
         furhat.say{
             +"Due to an experiment gone wrong with the military of ${words[2]}"
-            +"he became a ${words[3]}"
+            +"${words[0]} became a ${words[3]}"
             +Gestures.Smile
             +"coloured superhero with amazing powers, like ${words[4]}."}
             delay(200)
@@ -334,7 +334,7 @@ val TellStory = state {
                 +Gestures.BrowRaise
                 + "falling from the sky."}
             delay(200)
-            furhat.say("Luckily, our hero is able to defeat him, capturing his enemy with his ${words[10]}.")
+            furhat.say("Luckily, ${words[0]} is able to defeat him, capturing his enemy with his ${words[10]}.")
             delay(200)
             furhat.say("So, our hero saves the day yet again.")
             furhat.gesture(Gestures.Smile, async = false)
