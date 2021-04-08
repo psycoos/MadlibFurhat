@@ -17,6 +17,7 @@ import furhatos.nlu.common.Number
 
 val words: MutableList<String> = ArrayList()
 
+
 fun Grounding(word: String): String {
 
     return "${word}, I will add it to the story"
@@ -66,6 +67,7 @@ val Explain = state(Interaction) {
         furhat.say("I will ask you for word types, such as animals or colors.")
         furhat.gesture(Gestures.Smile)
         delay(300)
+        furhat.param.noSpeechTimeout = 10000 //set global default to trigger onNoResponse
         goto(AskToPlay)
     }
 }
@@ -108,7 +110,10 @@ val FirstName = state {
 
     onResponse<PersonName> {
         words.add(it.text)
-        furhat.say("${words[0]}, I will add it to the story.")
+        random(
+            {furhat.say("${words[0]}, Sounds like a nice guy.")},
+            {furhat.say("Alright, I will add ${words[0]} to the story.")}
+        )
         goto(Profession)
     }
 }
@@ -121,7 +126,10 @@ val Profession = state {
 
     onResponse<Professions> {
         words.add(it.text)
-        furhat.say("${words[1]}, I will add it to the story.")
+        random(
+            {furhat.say("${words[1]}, my friend used to do that.")},
+            {furhat.say("Ah, ${words[1]}, a noble profession")}
+        )
         furhat.gesture(Smile)
         goto(Country)
     }
@@ -135,7 +143,15 @@ val Country = state {
 
     onResponse<Countries> {
         words.add(it.text)
-        furhat.say("${words[2]}, I will add it to the story.")
+        if (it.text == "The Netherlands" || it.text == "the Netherlands") {
+            furhat.say("Oh, ${words[2]}, I was made there!")
+        } else {
+            random(
+                    { furhat.say("${words[2]}, nice place. I will add it to the story.") },
+                    { furhat.say("Alright, ${words[2]} seems to be a popular holiday destination.") }
+
+            )
+        }
         goto(ColourOne)
     }
 }
@@ -148,7 +164,17 @@ val ColourOne = state {
 
     onResponse<Color> {
         words.add(it.text)
-        furhat.say("${words[3]}, I will add it to the story.")
+        if (it.text == "Red" || it.text == "red") {
+            furhat.say("${words[3]}, very romantic. My internal circuitry prevents me from feeling love. I will add it to the story.")
+        }
+        else if (it.text == "Blue" || it.text == "blue") {
+            furhat.say("Oh ${words[3]}, Like water. I don't like water, it damages my internal organs.")
+        }
+        else if (it.text == "Green" || it.text == "green") {
+            furhat.say("${words[3]}, like the grass outside. I can't go outside because i'm stuck inside this screen.")
+        } else {
+            furhat.say("${words[3]}, that's my favorite color! I will add it to the story.")
+        }
         goto(Superpower)
     }
 }
@@ -161,7 +187,11 @@ val Superpower = state {
 
     onResponse<Superpowers> {
         words.add(it.text)
-        furhat.say("${words[4]}, I will add it to the story.")
+        random(
+                { furhat.say("${words[4]}, a bit boring but alright. I wil add it to the story.") },
+                { furhat.say("${words[4]}, I wish I could do that, but I don't have a physical body. I will add it to the story though.") }
+        )
+
         goto(Mammal)
     }
 }
@@ -174,7 +204,11 @@ val Mammal = state {
 
     onResponse<Mammals> {
         words.add(it.text)
-        furhat.say("${words[5]}, I will add it to the story.")
+        if (it.text == "Cat" || it.text == "cat" || it.text == "cats") {
+            furhat.say("${words[5]}, a good friend of mine, Mariët, also has a very cute cat. I will add it to the story.")
+        } else {
+            furhat.say("${words[5]}, I will add it to the story.")
+        }
         goto(ColourTwo)
     }
 }
@@ -187,7 +221,11 @@ val ColourTwo = state {
 
     onResponse<Number> {
         words.add(it.text)
-        furhat.say("${words[6]}, I will add it to the story.")
+        random (
+                {furhat.say("${words[6]},That's the amount of transistors in my brain. I will add it to the story.")},
+                {furhat.say("${words[6]},I hope that is enough, but I will add it to the story.")}
+                )
+
         goto(FacialFeature)
     }
 }
@@ -200,7 +238,7 @@ val FacialFeature = state {
 
     onResponse<FacialFeatures> {
         words.add(it.text)
-        furhat.say("${words[7]}, I will add it to the story.")
+        furhat.say("${words[7]}, some might say that is also my best feature. I will add it to the story.")
         goto(Vegetable)
     }
 }
@@ -213,7 +251,7 @@ val Vegetable = state {
 
     onResponse<Vegetables> {
         words.add(it.text)
-        furhat.say("${words[8]}, I will add it to the story.")
+        furhat.say("${words[8]}, those are especially disgusting. I will add it to the story.")
         goto(Capital)
     }
 }
@@ -226,11 +264,14 @@ val Capital = state {
 
     onResponse<Capitals> {
         words.add(it.text)
-        furhat.say("${words[9]}, I will add it to the story.")
+        if (it.text == "Enschede" || it.text == "enschede") {
+            furhat.say("Oh, ${words[9]}, My good friend Mariët lives there")
+        } else {
+            furhat.say("${words[9]}, I heard it's beautiful there this time of year. I will add it to the story.")
+        }
         goto(Weapon)
     }
 }
-
 val Weapon : State = state {
     onEntry {
         furhat.ask("And for the last category, name some kind of weapon.")
@@ -238,8 +279,18 @@ val Weapon : State = state {
     }
 
     onResponse<Weapon> {
+        furhat.say("Come on! Can't you think of something more deadly?")
+        goto(ProperWeapon)
+    }
+}
+val ProperWeapon : State = state {
+    onEntry {
+        furhat.ask("Name some kind of weapon.")
+    }
+
+    onResponse<Weapon> {
         words.add(it.text)
-        furhat.say("${words[10]}, I will add it to the story.")
+        furhat.say("${words[10]}, That's better! I will add it to the story.")
         goto(TellStory)
     }
 }
