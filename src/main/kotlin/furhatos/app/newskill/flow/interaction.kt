@@ -53,6 +53,7 @@ val Explain = state(Interaction) {
     onEntry{
         furhat.ask("Do you know what a Mad Lib is?")
         furhat.gesture(BrowRaise)
+        furhat.param.noSpeechTimeout = 10000 //set global default to trigger onNoResponse
     }
     onResponse<Yes> {
         furhat.gesture(Gestures.Smile)
@@ -67,7 +68,6 @@ val Explain = state(Interaction) {
         furhat.say("I will ask you for word types, such as animals or colors.")
         furhat.gesture(Gestures.Smile)
         delay(300)
-        furhat.param.noSpeechTimeout = 10000 //set global default to trigger onNoResponse
         goto(AskToPlay)
     }
 }
