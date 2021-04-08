@@ -5,11 +5,19 @@ import furhatos.flow.kotlin.*
 import furhatos.app.newskill.nlu.*
 import furhatos.gestures.Gestures
 import furhatos.gestures.Gestures.BigSmile
+import furhatos.gestures.Gestures.BrowRaise
 import furhatos.gestures.Gestures.ExpressSad
+import furhatos.gestures.Gestures.Smile
 import furhatos.nlu.common.Color
 import furhatos.nlu.common.Number
 
 val words: MutableList<String> = ArrayList()
+
+fun Grounding(word: String): String {
+
+    return "${word}, I will add it to the story"
+}
+
 
 val Start : State = state(Interaction) {
 
@@ -33,7 +41,7 @@ val AskToPlay = state(Interaction) {
                 {furhat.ask("Would you like to make a Mad lib with me")},
                 {furhat.ask("Do you want to make a Mad lib?")}
         )
-
+    furhat.gesture(BrowRaise)
     }
 
     onResponse<Yes>{
@@ -54,7 +62,7 @@ val AskToPlay = state(Interaction) {
                 {furhat.say("Okay, well that's a shame. Have a nice day!")},
                 {furhat.say("Oh, that's unfortunate. Have a nice day!")}
         )
-        furhat.gesture(Gestures.ExpressSad)
+        furhat.gesture(ExpressSad)
     }
 }
 
@@ -74,11 +82,13 @@ val FirstName = state {
 val Profession = state {
     onEntry {
         furhat.ask("Okay, then give me a profession.")
+        furhat.gesture(BrowRaise)
     }
 
     onResponse<Professions> {
         words.add(it.text)
         furhat.say("${words[1]}, I will add it to the story.")
+        furhat.gesture(Smile)
         goto(Country)
     }
 }
@@ -179,7 +189,7 @@ val Capital = state {
     }
 }
 
-val Weapon = state {
+val Weapon : State = state {
     onEntry {
         furhat.ask("Name some kind of weapon.")
     }
@@ -195,6 +205,7 @@ val Weapon = state {
 val TellStory = state {
     onEntry {
         furhat.say("Meet our hero ${words[0]},")
+        furhat.gesture(BigSmile)
         furhat.say("a super intelligent ${words[1]}.")
         furhat.say("A run-in with the military of ${words[2]} leads him to create his superhero alter-ego")
         furhat.say("a ${words[3]} coloured giant with amazing powers, ")
@@ -219,7 +230,7 @@ val AnotherStory = state {
         furhat.say("That's great!")
         furhat.gesture(Gestures.Smile)
 
-//        goto(FirstName)
+        goto(FirstName)
     }
 
     onResponse<No> {
