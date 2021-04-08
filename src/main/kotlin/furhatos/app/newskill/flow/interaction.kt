@@ -219,7 +219,7 @@ val Superpower = state {
                     furhat.say {
                         +Gestures.BrowFrown
                         +"I wish I could do that, but I don't have a physical body. "
-                        +"I will add ${words[4]}, though."
+                        +"I will add ${words[4]} though."
                     }
                 }
         )
@@ -244,7 +244,7 @@ val Mammal = state {
             furhat.say({
                 +"${words[5]}, those are awesome."
                 +Gestures.Smile
-                +"My favorite animal is a, "
+                +"My favorite animal is a "
                 random {
                     +"Wombat."
                     +"Platypus."
@@ -300,7 +300,7 @@ val Vegetable = state {
         furhat.say{
             +"${words[8]}, "
             +Gestures.ExpressDisgust
-            +" , those are especially disgusting. I filled it in."}
+            +" those are especially disgusting. I filled it in."}
             goto(Capital)
     }
 }
@@ -367,7 +367,7 @@ val TellStory = state {
         delay(200)
         furhat.say{
             +"Due to an experiment gone wrong with the military of ${words[2]}, "
-            +"${words[0]} became a ${words[3]}, "
+            +"${words[0]} became a ${words[3]} "
             +Gestures.Smile
             +"coloured superhero with amazing powers, like ${words[4]}."}
             delay(200)
@@ -376,14 +376,14 @@ val TellStory = state {
             furhat.say{
                 +"Eventually it is discovered that our hero's arch nemesis, Doctor Evil, "
                 + Gestures.Surprise
-                + "distinguished by his ${words[6]}, ${words[7]}s"}
+                + "distinguished by his ${words[6]} ${words[7]}s"}
             delay(200)
             furhat.say("has turned ${words[8]} into a weapon.")
             delay(200)
             furhat.say("Leading to a huge battle between the two in downtown ${words[9]}")
             delay(200)
             furhat.say{
-                +"with slices of ${words[8]}, "
+                +"with slices of ${words[8]} "
                 +Gestures.BrowRaise
                 + "falling from the sky."}
             delay(200)
