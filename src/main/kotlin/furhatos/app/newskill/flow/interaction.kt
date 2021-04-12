@@ -212,7 +212,7 @@ val Superpower = state {
         random(
                 {
                     furhat.say {
-                        +"${words[4]}"
+                        +"${words[4]}, "
                         +Gestures.BrowFrown
                         +"a bit boring, but alright. Noted."
                     }
