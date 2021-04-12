@@ -54,7 +54,7 @@ val Explain = state(Interaction) {
     onEntry{
         furhat.ask("Do you know what a Mad Lib is?")
         furhat.gesture(Gestures.BrowRaise)
-        //furhat.param.noSpeechTimeout = 10000 //set global default to trigger onNoResponse
+        furhat.param.noSpeechTimeout = 20000 //set global default to trigger onNoResponse
     }
 
     onResponse<Yes>{
@@ -68,7 +68,6 @@ val Explain = state(Interaction) {
         delay(200)
         furhat.say("A mad lib is a word game where we will make a story together")
         furhat.say("There are still blanks in the story, so you will have to help me to fill them in.")
-        furhat.say("I will ask you for word types, such as animals or colors.")
         furhat.gesture(Gestures.Smile)
         delay(300)
         goto(AskToPlay)
@@ -90,6 +89,9 @@ val AskToPlay = state(Interaction) {
                 {furhat.say("Awesome, let's go!")}
         )
         furhat.gesture(Gestures.Smile)
+        furhat.say("I will ask you for word types, such as animals or colors.")
+        furhat.say("Please answer with only one word")
+        furhat.say("I will tell you if I didn't understand you.")
         delay(100)
         goto(FirstName)
     }
@@ -186,12 +188,12 @@ val ColourOne = state {
         }
         else if (it.text == "Green" || it.text == "green") {
             furhat.say{
-                +"${words[3]}, like the grass outside. "
+                +"${words[3]}, like the grass outside."
                 +Gestures.BrowFrown
                 +"I can't go outside, because i'm stuck inside this screen."}
         } else {
             furhat.say{
-                +"${words[3]}, that's my favorite color! "
+                +"${words[3]}, that's my favorite color as well!"
                 +Gestures.Smile
                 +"I will fill it in."}
         }
@@ -229,7 +231,7 @@ val Superpower = state {
 
 val Mammal = state {
     onEntry {
-        furhat.ask("Can you name a mammal?")
+        furhat.ask("Can you name a mammal? For example, a tiger.")
         furhat.gesture(Gestures.BrowRaise)
     }
 
@@ -319,7 +321,7 @@ val Capital = state {
                 +Gestures.Smile
                 +"But I'll accept it, because my good friend Mariët lives there."}
         } else {
-            furhat.say("${words[9]}, I heard it's beautiful there this time of year.")
+            furhat.say("${words[9]}, I heard it's quite beautiful there this time of year.")
         }
         goto(Weapon)
     }
@@ -351,42 +353,41 @@ val ProperWeapon : State = state {
 val TellStory = state {
     onEntry {
         furhat.gesture(Gestures.Nod(duration=0.5), async = false)
-        delay(200)
+        delay(100)
         furhat.say("Okay, we have filled in all the blanks.")
         furhat.gesture(Gestures.Smile(strength=0.5))
-        delay(200)
+        delay(100)
         furhat.say("Let's hear the story!")
-        delay(200)
+        delay(100)
 
         furhat.say{
             +"Meet our hero"
             +Gestures.Smile
             +"${words[0]}"}
-        delay(200)
         furhat.say("a super intelligent ${words[1]}.")
-        delay(200)
+        delay(100)
         furhat.say{
             +"Due to an experiment gone wrong with the military of ${words[2]}, "
             +"${words[0]} became a ${words[3]} "
             +Gestures.Smile
             +"coloured superhero with amazing powers, like ${words[4]}."}
-            delay(200)
+            delay(100)
             furhat.say("Every day, he battles bad guys with his pet ${words[5]}.")
-            delay(200)
+            delay(100)
             furhat.say{
                 +"Eventually it is discovered that our hero's arch nemesis, Doctor Evil, "
                 + Gestures.Surprise
                 + "distinguished by his ${words[6]} ${words[7]}s"}
-            delay(200)
+            delay(100)
             furhat.say("has turned ${words[8]} into a weapon.")
-            delay(200)
+            delay(100)
             furhat.say("Leading to a huge battle between the two in downtown ${words[9]}")
-            delay(200)
+            delay(100)
             furhat.say{
                 +"with slices of ${words[8]} "
                 +Gestures.BrowRaise
                 + "falling from the sky."}
-            delay(200)
+            delay(100)
             furhat.say("Luckily, ${words[0]} is able to defeat him, capturing his enemy with his ${words[10]}.")
             delay(200)
             furhat.say("So, our hero saves the day yet again.")
@@ -398,7 +399,7 @@ val TellStory = state {
 val StoryEnd = state {
     onEntry {
         furhat.say("That was one crazy story!")
-        delay(200)
+        delay(100)
         furhat.ask("Did you like the story?")
         furhat.gesture(Gestures.BrowRaise)
     }
@@ -426,15 +427,16 @@ val AnotherStory = state {
         furhat.say("That's great!")
         furhat.gesture(Gestures.Smile)
         furhat.say("I will ask you for words again.")
+        words.clear()
         goto(FirstName)
     }
 
     onResponse<No> {
-        furhat.gesture(ExpressFear)
         random(
                 { furhat.say("Okay, well that's a shame.") },
                 { furhat.say("Oh thank God, it's so tiring to do this all day" ) }
         )
+        furhat.gesture(ExpressFear)
         delay(200)
         furhat.say("Have a nice day!")
         furhat.gesture(Gestures.Smile)
