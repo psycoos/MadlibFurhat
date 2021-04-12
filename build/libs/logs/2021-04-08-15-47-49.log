@@ -1,0 +1,4 @@
+15:47:49 [Skill] INFO  Skill:139 - Connecting to Furhat server on 192.168.2.48:1932
+15:47:50 [NewskillSkill] INFO  NewskillSkill:166 - Starting skill
+15:47:55 [NewskillSkill] WARN  Matthew: 68 - Emphasis is not supported for the Polly Neural Voice Matthew-Neural
+15:48:13 [EventSystem] INFO  NewskillSkill:184 - Terminating skill
