@@ -19,13 +19,6 @@ import furhatos.nlu.common.Number
 
 val words: MutableList<String> = ArrayList()
 
-
-fun Grounding(word: String): String {
-
-    return "${word}, I will add it to the story"
-}
-
-
 val Start : State = state(Interaction) {
 
     onEntry {
@@ -432,12 +425,12 @@ val AnotherStory = state {
     }
 
     onResponse<No> {
+        furhat.gesture(ExpressFear(duration=0.5))
+        delay(100)
         random(
                 { furhat.say("Okay, well that's a shame.") },
                 { furhat.say("Oh thank God, it's so tiring to do this all day" ) }
         )
-        furhat.gesture(ExpressFear)
-        delay(200)
         furhat.say("Have a nice day!")
         furhat.gesture(Gestures.Smile)
     }
